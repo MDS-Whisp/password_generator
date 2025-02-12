@@ -27,9 +27,24 @@ def fetch_word():
     word = response.json ()[0]
     return word
 
+def replace_letters(word):
+    word = word[0].upper() + word[1:]
+    if "a" in word:
+        word = word.replace("a", "@")
+
+    if "o" in word:
+        word = word.replace("o", "0")
+
+    if "s" in word:
+        word = word.replace("s", "$")
+    return word
+
+
 def generate_weaker_password():
     word1 = fetch_word()
     word2 = fetch_word()
+    word1 = replace_letters(word1)
+    word2 = replace_letters(word2)
     password = word1 + word2
     return password
 
